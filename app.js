@@ -25,6 +25,15 @@ incBtn.addEventListener('click', function () {
     checkDamage(pokemon1Dmg, pokemon1HP);
 })
 
+let incBtnFifty = document.querySelector('#p1IncDmgFifty')
+incBtnFifty.addEventListener('click', function () {
+    pokemon1Dmg += 50;
+    console.log(`damage is now ${pokemon1Dmg}`);
+    let damage = document.querySelector('span.damage')
+    damage.innerText = pokemon1Dmg;
+    checkDamage(pokemon1Dmg, pokemon1HP);
+})
+
 let decBtn = document.querySelector('#p1DecDmg')
 decBtn.addEventListener('click', function () {
     pokemon1Dmg -= 10;
