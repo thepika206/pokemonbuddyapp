@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Buddy App</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <h1>Damage Tracker</h1>
+    <!-- let's use a div class "card" to wrap all the "pokemon" that we want on the screen -->
+    <div class='card'>
+        <h2>My Pokemon</h2>
+        <!--     <label for='pokeOneName'>Name</label>
+  <input class='name' id='pokeOneName' type='text'> -->
+        <!--   <label for='pokemonHP'>Total HP</label>
+  <input class='inputHP' name='pokemonHP' type='text'> -->
+        <select id='p1TotalHP'>
+            <option value=''>-Choose the HP</option>
+            <option value='10'>10</option>
+            <option value='20'>20</option>
+            <option value='30'>30</option>
+            <option value='40'>40</option>
+            <option value='50'>50</option>
+            <option value='60'>60</option>
+            <option value='70'>70</option>
+            <option value='80'>80</option>
+            <option value='90'>90</option>
+            <option value='100'>100</option>
+            <option value='110'>110</option>
+            <option value='120'>120</option>
+            <option value='130'>130</option>
+            <option value='140'>140</option>
+            <option value='150'>150</option>
+            <option value='160'>160</option>
+            <option value='170'>170</option>
+            <option value='180'>180</option>
+            <option value='190'>190</option>
+            <option value='200'>200</option>
+            <option value='210'>210</option>
+            <option value='220'>220</option>
+            <option value='230'>230</option>
+
+        </select>
+        <label for='p1TotalHP'>HP</label>
+        <p><span id='p1DamageDisplay' class='damage'>0</span>damage</p>
+        <input id='p1IncDmg' type='button' value='+ 10'>
+        <input id='p1DecDmg' type='button' value='- 10'>
+        <input id='p1ClrDmg' type='button' value='clear'>
+    </div>
+
+    <script src='app.js'></script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+span.damage {
+    margin: 10px;
+}
+
+div.card {
+    border: 1px solid black;
+    max-width: 400px;
+}
