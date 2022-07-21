@@ -7,6 +7,7 @@ h1 {
     margin-left: 10px;
 }
 
+
 span.damage {
     margin: 10px;
 }
@@ -17,9 +18,12 @@ div.card {
     margin: 10px;
     padding: 0 10px 10px 10px;
     background-color: white;
+    /* border radius adds a rounded corner */
     border-radius: 15px;
 }
 
+
+/* general styles for the buttons */
 #p1IncDmgFifty,
 #p1IncDmg,
 #p1DecDmg,
@@ -35,6 +39,7 @@ div.card {
     padding: 5px;
 }
 
+/* specific button style overrides for the primary damage button*/
 #p1IncDmg {
     background-color: royalblue;
     color: white;
@@ -42,11 +47,14 @@ div.card {
     max-width: 100px;
 }
 
+/* specific button style overrides for the reset button*/
 #p1ClrDmg {
     width: 15%;
     color: red;
 }
 
+
+/* hover styles */
 #p1IncDmgFifty:hover,
 #p1IncDmg:hover,
 #p1DecDmg:hover,
