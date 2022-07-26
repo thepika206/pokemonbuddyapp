@@ -2,18 +2,20 @@
 let pokemon1Dmg = 0;
 let pokemon1HP = 0;
 let pokemon1isKO = false;
-function isP1KO(dmg, hp) {
-    if (hp !== 0 && dmg >= hp) {
+function isP1KO() {
+    if (pokemon1HP !== 0 && pokemon1Dmg >= pokemon1HP) {
         // alert('pokemon KO')
         pokemon1isKO = true;
         console.log('pokemon is KO');
         document.querySelector('#p1Card').style.backgroundColor = 'pink';
-        document.querySelector('#p1CardHeader').innerText = 'Pokemon KO';
+        document.querySelector('#p1CardHeader').innerText = 'Pokemon is KO';
 
     }
     else {
         const remainingHP = pokemon1HP - pokemon1Dmg
         console.log(`pokemon has ${remainingHP} HP left`)
+        document.querySelector('#p1Card').style.backgroundColor = 'white';
+        document.querySelector('#p1CardHeader').innerText = 'My Pokemon';
     }
 }
 
@@ -31,7 +33,7 @@ incBtn.addEventListener('click', function () {
     console.log(`damage is now ${pokemon1Dmg}`);
     let damage = document.querySelector('span.damage')
     damage.innerText = pokemon1Dmg;
-    isP1KO(pokemon1Dmg, pokemon1HP);
+    isP1KO();
 })
 
 let incBtnFifty = document.querySelector('#p1IncDmgFifty')
@@ -40,7 +42,7 @@ incBtnFifty.addEventListener('click', function () {
     console.log(`damage is now ${pokemon1Dmg}`);
     let damage = document.querySelector('span.damage')
     damage.innerText = pokemon1Dmg;
-    isP1KO(pokemon1Dmg, pokemon1HP);
+    isP1KO();
 })
 
 let decBtn = document.querySelector('#p1DecDmg')
@@ -50,6 +52,7 @@ decBtn.addEventListener('click', function () {
         console.log(`damage is now ${pokemon1Dmg}`);
         let damage = document.querySelector('#p1DamageDisplay')
         damage.innerText = pokemon1Dmg;
+        isP1KO();
     }
 })
 
