@@ -1,10 +1,19 @@
 
 let pokemon1Dmg = 0;
 let pokemon1HP = 0;
-function checkDamage(dmg, hp) {
+let pokemon1isKO = false;
+function isP1KO(dmg, hp) {
     if (hp !== 0 && dmg >= hp) {
-        alert('pokemon KO')
+        // alert('pokemon KO')
+        pokemon1isKO = true;
         console.log('pokemon is KO');
+        document.querySelector('#p1Card').style.backgroundColor = 'pink';
+        document.querySelector('#p1CardHeader').innerText = 'Pokemon KO';
+
+    }
+    else {
+        const remainingHP = pokemon1HP - pokemon1Dmg
+        console.log(`pokemon has ${remainingHP} HP left`)
     }
 }
 
@@ -22,7 +31,7 @@ incBtn.addEventListener('click', function () {
     console.log(`damage is now ${pokemon1Dmg}`);
     let damage = document.querySelector('span.damage')
     damage.innerText = pokemon1Dmg;
-    checkDamage(pokemon1Dmg, pokemon1HP);
+    isP1KO(pokemon1Dmg, pokemon1HP);
 })
 
 let incBtnFifty = document.querySelector('#p1IncDmgFifty')
@@ -31,7 +40,7 @@ incBtnFifty.addEventListener('click', function () {
     console.log(`damage is now ${pokemon1Dmg}`);
     let damage = document.querySelector('span.damage')
     damage.innerText = pokemon1Dmg;
-    checkDamage(pokemon1Dmg, pokemon1HP);
+    isP1KO(pokemon1Dmg, pokemon1HP);
 })
 
 let decBtn = document.querySelector('#p1DecDmg')
@@ -50,6 +59,7 @@ clrBtn.addEventListener('click', function () {
     console.log(`damage is now ${pokemon1Dmg}`);
     let damage = document.querySelector('span.damage')
     damage.innerText = pokemon1Dmg;
+    isP1KO();
 })
 
 
