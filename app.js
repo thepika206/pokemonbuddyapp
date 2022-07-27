@@ -3,7 +3,7 @@ let p1Dmg = 0;
 let p1HP = 0;
 let p1isKO = false;
 function isP1KO() {
-    if (p1HP !== 0 && p1Dmg >= p1HP) {
+    if (p1Dmg !== 0 && p1HP !== 0 && p1Dmg >= p1HP) {
         // alert('pokemon KO')
         p1isKO = true;
         console.log('pokemon 1 is KO');
