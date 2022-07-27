@@ -23,7 +23,7 @@ function isP1KO() {
 let pokemon1HPDisplay = document.querySelector('#p1TotalHP');
 pokemon1HPDisplay.addEventListener('input', function () {
     p1HP = pokemon1HPDisplay.value;
-    console.log(`pokemon1 hp set to ${p1HP}`)
+    console.log(`p1 hp set to ${p1HP}`)
 })
 
 
@@ -31,28 +31,28 @@ let incBtn = document.querySelector('#p1IncDmg');
 incBtn.addEventListener('click', function () {
     if (p1HP > 0) {
         p1Dmg += 10;
-        console.log(`damage is now ${p1Dmg}`);
+        console.log(`p1 damage is now ${p1Dmg}`);
         let damage = document.querySelector('span.damage');
         damage.innerText = p1Dmg;
         isP1KO();
     }
     else {
-        console.error('no damage, hp is not set');
+        console.error('no damage, p1 hp is not set');
         alert('Set the HP before adding damage');
     }
 })
 
 let incBtnFifty = document.querySelector('#p1IncDmgFifty')
 incBtnFifty.addEventListener('click', function () {
-    if (p1Dmg > 0) {
+    if (p1HP > 0) {
         p1Dmg += 50;
-        console.log(`damage is now ${p1Dmg}`);
+        console.log(`p1 damage is now ${p1Dmg}`);
         let damage = document.querySelector('span.damage');
         damage.innerText = p1Dmg;
         isP1KO();
     }
     else {
-        console.error('no damage, hp is not set');
+        console.error('no damage, p1 hp is not set');
         alert('Set the HP before adding damage');
     }
 
