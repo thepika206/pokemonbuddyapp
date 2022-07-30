@@ -82,3 +82,26 @@ clrBtn.addEventListener('click', function () {
 })
 
 
+const extraPkmn = ()=>{
+    var card = document.createElement('div')
+    card.className = 'card'
+    card.innerHTML = 'Test'
+    
+    var cardDeck = document.getElementById('playerPkmn')
+    cardDeck.appendChild(card)
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = 'Add Pkmn';
+    button.className = 'button';
+ 
+    button.onclick = extraPkmn
+ 
+    var container = document.getElementById('playerPkmn');
+    container.appendChild(button);
+}, false);
+
+
