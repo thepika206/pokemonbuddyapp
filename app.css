@@ -24,10 +24,7 @@ div.card {
 
 
 /* general styles for the buttons */
-#p1IncDmgFifty,
-#p1IncDmg,
-#p1DecDmg,
-#p1ClrDmg {
+.button {
     margin-right: 10px;
     width: 20%;
     max-width: 70px;
@@ -40,7 +37,7 @@ div.card {
 }
 
 /* specific button style overrides for the primary damage button*/
-#p1IncDmg {
+.primaryDamage {
     background-color: royalblue;
     color: white;
     border: 1px solid royalblue;
@@ -48,21 +45,18 @@ div.card {
 }
 
 /* specific button style overrides for the reset button*/
-#p1ClrDmg {
+.reset {
     width: 15%;
     color: red;
 }
 
 
 /* hover styles */
-#p1IncDmgFifty:hover,
-#p1IncDmg:hover,
-#p1DecDmg:hover,
-#p1ClrDmg:hover {
+.button:hover {
     border-color: red;
     cursor: pointer;
 }
 
-#p1TotalHP:hover {
+.selectHP:hover {
     cursor: pointer;
 }

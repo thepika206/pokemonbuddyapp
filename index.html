@@ -13,12 +13,8 @@
     <h1>Damage Tracker</h1>
     <!-- let's use a div class "card" to wrap all the "pokemon" that we want on the screen -->
     <div id='p1Card' class='card'>
-        <h2 id='p1CardHeader'>Pokemon 1</h2>
-        <!--     <label for='pokeOneName'>Name</label>
-  <input class='name' id='pokeOneName' type='text'> -->
-        <!--   <label for='pokemonHP'>Total HP</label>
-  <input class='inputHP' name='pokemonHP' type='text'> -->
-        <select id='p1TotalHP'>
+        <h2 class='cardHeader' id='p1CardHeader'>Pokemon 1</h2>
+        <select class='selectHP' id='p1TotalHP'>
             <option value=''>-Choose the HP</option>
             <option value='10'>10</option>
             <option value='20'>20</option>
@@ -47,10 +43,10 @@
         </select>
         <label for='p1TotalHP'>HP</label>
         <p><span id='p1DamageDisplay' class='damage'>0</span>damage</p>
-        <input id="p1IncDmgFifty" type="button" value="+ 50">
-        <input id='p1IncDmg' type='button' value='+ 10'>
-        <input id='p1DecDmg' type='button' value='- 10'>
-        <input id='p1ClrDmg' type='button' value='clear'>
+        <input class='button' id='p1IncDmgFifty' type="button" value="+ 50">
+        <input class='button primaryDamage' id='p1IncDmg' type='button' value='+ 10'>
+        <input class='button' id='p1DecDmg' type='button' value='- 10'>
+        <input class='button reset' id='p1ClrDmg' type='button' value='clear'>
     </div>
 
     <script src='app.js'></script>
