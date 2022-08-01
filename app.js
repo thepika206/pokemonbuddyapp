@@ -1,4 +1,13 @@
+function PKMN (id) {
+this.id = 1;
+this.name = "";
+this.hp = 0;
+this.active = 0;
+this.damage = 0;
+this.KO = 0;
+}
 
+let field = []
 let p1Dmg = 0;
 let p1HP = 0;
 let p1isKO = false;
@@ -81,27 +90,35 @@ clrBtn.addEventListener('click', function () {
     isP1KO();
 })
 
+let pkmnCount = 1;
 
 const extraPkmn = ()=>{
-    var card = document.createElement('div')
-    card.className = 'card'
-    card.innerHTML = 'Test'
-    
-    var cardDeck = document.getElementById('playerPkmn')
-    cardDeck.appendChild(card)
+    if (pkmnCount<6){
+        pkmnCount++;
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.id = `p${pkmnCount}Card`;
+        let cardDeck = document.getElementById('playerPkmn');
+        let heading2 = document.createElement('h2');
+        heading2.class = 'cardHeader';
+        heading2.id = `p${pkmnCount}CardHeader`;
+        heading2.innerHTML = `Pokemon ${pkmnCount}`;
+        card.appendChild(heading2);
+        let pName = document.createElement('p');
+        let nameLabel = document.createElement('label');
+        nameLabel.id = `p${pkmnCount}`;
+        nameLabel.innerHTML = 'Name';
+        pName.appendChild(nameLabel);
+        let nameInput = document.createElement('input');
+        nameInput.class = 'name';
+        nameInput.id = `poke${pkmnCount}Name`
+        nameInput.type = 'text'
+        pName.appendChild(nameInput)
+        card.appendChild(pName);
+        cardDeck.appendChild(card);
+        
+    }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.innerHTML = 'Add Pkmn';
-    button.className = 'button';
- 
-    button.onclick = extraPkmn
- 
-    var container = document.getElementById('playerPkmn');
-    container.appendChild(button);
-}, false);
-
-
+let addPkmn = document.querySelector('#addPkmn');
+addPkmn.addEventListener('click', extraPkmn)
