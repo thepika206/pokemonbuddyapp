@@ -108,13 +108,43 @@ const extraPkmn = ()=>{
         let nameLabel = document.createElement('label');
         nameLabel.id = `p${pkmnCount}`;
         nameLabel.innerHTML = 'Name';
+        nameLabel.htmlFor = `poke${pkmnCount}Name`
         pName.appendChild(nameLabel);
         let nameInput = document.createElement('input');
         nameInput.class = 'name';
-        nameInput.id = `poke${pkmnCount}Name`
+        nameInput.id = `poke${pkmnCount}Name`;
         nameInput.type = 'text'
-        pName.appendChild(nameInput)
+        pName.appendChild(nameInput);
         card.appendChild(pName);
+        
+        let hpPara = document.createElement('p');
+        hpLabel = document.createElement('label');
+        hpLabel.innerHTML= 'HP';
+        hpLabel.htmlFor = `p${pkmnCount}HP`;
+        hpPara.appendChild(hpLabel);
+        let hpSelect = document.createElement('select');
+        hpSelect.class = 'selectHP';
+        hpSelect.id = `p${pkmnCount}TotalHP`;
+        hpDefault = document.createElement('option');
+        hpDefault.innerHTML = 'Choose the HP';
+        hpSelect.appendChild(hpDefault)
+        for (let i = 30; i<=280; i+=10){
+            tmpHP = document.createElement('option')
+            tmpHP.value = `${i}`;
+            tmpHP.innerHTML = `${i}`;
+            hpSelect.appendChild(tmpHP);
+        }
+        hpPara.appendChild(hpSelect);
+        card.appendChild(hpPara);
+
+        dmgPara = document.createElement('p');
+        dmgPara.innerHTML = `Damage <span id='p${pkmnCount}DamageDisplay' class='damage'>0</span>`
+        // dmgSpan = document.createAttribute('span');
+        // dmgSpan.id = `p${pkmnCount}DamageDisplay`
+        // dmgSpan.class = 'damage';
+        // dmgSpan.innerHTML = '0';
+        // dmgPara.appendChild(dmgSpan);
+        card.appendChild(dmgPara);
         cardDeck.appendChild(card);
         
     }
