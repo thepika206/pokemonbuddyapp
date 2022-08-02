@@ -9,14 +9,10 @@ function PKMN (id) {
     
 let field = []
 
-let p1Dmg = 0;
-let p1HP = 0;
-let p1isKO = false;
-
-function isP1KO(pkmn, pkmnNbr) {
+function isKO(pkmn, pkmnNbr) {
     if (pkmn.damage !== 0 && pkmn.hp !== 0 && pkmn.damage >= pkmn.hp) {
         // alert('pokemon KO')
-        p1isKO = true;
+        pkmn.KO = 1;
         console.log('pokemon 1 is KO');
         document.querySelector(`#p${pkmnNbr}Card`).style.backgroundColor = 'pink';
         document.querySelector(`#p${pkmnNbr}CardHeader`).innerText = `Pokemon ${pkmnNbr} is KO`;
@@ -135,7 +131,7 @@ const extraPkmn = ()=>{
             hpTotal = pokemon1HPDisplay.value;
             console.log(field)
             field[n-1].hp = hpTotal
-            console.log(`p1 hp set to ${hpTotal}`)
+            console.log(`p${n} hp set to ${hpTotal}`)
         })
         //button functions
         
@@ -143,33 +139,32 @@ const extraPkmn = ()=>{
         // let damageCurrent = 0
         let incBtn = document.querySelector(`#p${n}IncDmg`);
         incBtn.addEventListener('click', function () {
-            p1Dmg = calcDamage(field[n-1], 10, `#p${n}DamageDisplay`);
-            isP1KO(field[n-1], n);
+            calcDamage(field[n-1], 10, `#p${n}DamageDisplay`);
+            isKO(field[n-1], n);
         })
 
         //button adds 50 damage
         let incBtnFifty = document.querySelector(`#p${n}IncDmgFifty`)
         incBtnFifty.addEventListener('click', function () {
-            p1Dmg = calcDamage(field[n-1], 50, `#p${n}DamageDisplay`);
-            isP1KO(field[n-1], n);
+            calcDamage(field[n-1], 50, `#p${n}DamageDisplay`);
+            isKO(field[n-1], n);
         })
 
         //button removes 10 damage
         let decBtn = document.querySelector(`#p${n}DecDmg`);
         decBtn.addEventListener('click', function () {
-            p1Dmg = calcDamage(field[n-1], -10, `#p${n}DamageDisplay`);
-            isP1KO(field[n-1], n);
+            calcDamage(field[n-1], -10, `#p${n}DamageDisplay`);
+            isKO(field[n-1], n);
         })
 
         //button clears all damage
         let clrBtn = document.querySelector(`#p${n}ClrDmg`);
         clrBtn.addEventListener('click', function () {
-            p1Dmg = 0;
-            console.log(`damage is now ${p1Dmg}`);
+            console.log('damage is now 0');
             let damageDisplay = document.querySelector(`#p${n}DamageDisplay`);
-            damageDisplay.innerText = `Damage: ${p1Dmg}`;
+            damageDisplay.innerText = 'Damage: 0';
             field[n-1].damage = 0
-            isP1KO(field[n-1], n);
+            isKO(field[n-1], n);
         })
         
     }
