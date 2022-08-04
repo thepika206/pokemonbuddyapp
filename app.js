@@ -128,7 +128,7 @@ const extraPkmn = () => {
         pokemonHPDisplay.addEventListener('input', function () {
             hpTotal = pokemonHPDisplay.value;
             field[n - 1].hp = hpTotal
-            console.log(`p${n} hp set to ${hpTotal}`)
+            console.log(`pokemon ${n} HP set to ${hpTotal}`)
         })
         //button functions
 
