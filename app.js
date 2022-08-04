@@ -1,12 +1,12 @@
-function PKMN (id) {
+function PKMN(id) {
     this.id = id;
     this.name = "";
     this.hp = 0;
     this.active = 0;
     this.damage = 0;
     this.KO = 0;
-    }
-    
+}
+
 let field = []
 
 function isKO(pkmn, pkmnNbr) {
@@ -52,21 +52,21 @@ function calcDamage(pkmn, changeDmg, dmgSpanID) {
 
 let pkmnCount = 0;
 
-const extraPkmn = ()=>{
-    
-    if (pkmnCount<6){
+const extraPkmn = () => {
+
+    if (pkmnCount < 6) {
         pkmnCount++;
         const n = pkmnCount
-        let buttons = [{id: `p${n}IncDmgFifty`, class:"button", value:'+ 50'},
-                    {id: `p${n}IncDmg`, class:'button primaryDamage', value:'+ 10'},
-                    {id: `p${n}DecDmg`, class:'button', value:'- 10'},
-                    {id: `p${n}ClrDmg`, class:'button reset', value:'clear'}]
+        let buttons = [{ id: `p${n}IncDmgFifty`, class: "button", value: '+ 50' },
+        { id: `p${n}IncDmg`, class: 'button primaryDamage', value: '+ 10' },
+        { id: `p${n}DecDmg`, class: 'button', value: '- 10' },
+        { id: `p${n}ClrDmg`, class: 'button reset', value: 'clear' }]
         let card = document.createElement('div');
         card.className = 'card';
         card.id = `p${n}Card`;
         let cardDeck = document.getElementById('playerPkmn');
         let heading2 = document.createElement('h2');
-        heading2.class = 'cardHeader';
+        heading2.className = 'cardHeader';
         heading2.id = `p${n}CardHeader`;
         heading2.innerHTML = `Pokemon ${n}`;
         card.appendChild(heading2);
@@ -77,24 +77,25 @@ const extraPkmn = ()=>{
         nameLabel.htmlFor = `poke${n}Name`
         pName.appendChild(nameLabel);
         let nameInput = document.createElement('input');
-        nameInput.class = 'name';
+        nameInput.setAttribute('class', 'name');
+        nameInput.className = 'name';
         nameInput.id = `poke${n}Name`;
         nameInput.type = 'text'
         pName.appendChild(nameInput);
         card.appendChild(pName);
-        
+
         let hpPara = document.createElement('p');
         hpLabel = document.createElement('label');
-        hpLabel.innerHTML= 'HP';
+        hpLabel.innerHTML = 'HP';
         hpLabel.htmlFor = `p${n}HP`;
         hpPara.appendChild(hpLabel);
         let hpSelect = document.createElement('select');
-        hpSelect.class = 'selectHP';
+        hpSelect.className = 'selectHP';
         hpSelect.id = `p${n}TotalHP`;
         hpDefault = document.createElement('option');
         hpDefault.innerHTML = '-Choose the HP';
         hpSelect.appendChild(hpDefault)
-        for (let i = 30; i<=280; i+=10){
+        for (let i = 30; i <= 280; i += 10) {
             tmpHP = document.createElement('option')
             tmpHP.value = `${i}`;
             tmpHP.innerHTML = `${i}`;
@@ -108,17 +109,17 @@ const extraPkmn = ()=>{
         dmgPara.setAttribute('class', 'damage')
         dmgPara.innerText = 'Damage: 0'
         //dmgPara.innerHTML = `Damage <span id='p${pkmnCount}DamageDisplay' class='damage'>0</span>`
-        
+
         card.appendChild(dmgPara);
         let dmgButtonPara = document.createElement('p')
-        for (let i = 0; i< buttons.length; i++){
-                tmpButton = document.createElement('input')
-                tmpButton.type = 'button'
-                tmpButton.setAttribute("class", buttons[i].class)
-                tmpButton.id = buttons[i].id
-                tmpButton.setAttribute("value", buttons[i].value)
-                dmgButtonPara.appendChild(tmpButton)
-            }
+        for (let i = 0; i < buttons.length; i++) {
+            tmpButton = document.createElement('input')
+            tmpButton.type = 'button'
+            tmpButton.setAttribute("class", buttons[i].class)
+            tmpButton.id = buttons[i].id
+            tmpButton.setAttribute("value", buttons[i].value)
+            dmgButtonPara.appendChild(tmpButton)
+        }
         card.appendChild(dmgButtonPara)
         cardDeck.appendChild(card);
 
@@ -130,31 +131,31 @@ const extraPkmn = ()=>{
         pokemon1HPDisplay.addEventListener('input', function () {
             hpTotal = pokemon1HPDisplay.value;
             console.log(field)
-            field[n-1].hp = hpTotal
+            field[n - 1].hp = hpTotal
             console.log(`p${n} hp set to ${hpTotal}`)
         })
         //button functions
-        
+
         // let hpTotal = 0
         // let damageCurrent = 0
         let incBtn = document.querySelector(`#p${n}IncDmg`);
         incBtn.addEventListener('click', function () {
-            calcDamage(field[n-1], 10, `#p${n}DamageDisplay`);
-            isKO(field[n-1], n);
+            calcDamage(field[n - 1], 10, `#p${n}DamageDisplay`);
+            isKO(field[n - 1], n);
         })
 
         //button adds 50 damage
         let incBtnFifty = document.querySelector(`#p${n}IncDmgFifty`)
         incBtnFifty.addEventListener('click', function () {
-            calcDamage(field[n-1], 50, `#p${n}DamageDisplay`);
-            isKO(field[n-1], n);
+            calcDamage(field[n - 1], 50, `#p${n}DamageDisplay`);
+            isKO(field[n - 1], n);
         })
 
         //button removes 10 damage
         let decBtn = document.querySelector(`#p${n}DecDmg`);
         decBtn.addEventListener('click', function () {
-            calcDamage(field[n-1], -10, `#p${n}DamageDisplay`);
-            isKO(field[n-1], n);
+            calcDamage(field[n - 1], -10, `#p${n}DamageDisplay`);
+            isKO(field[n - 1], n);
         })
 
         //button clears all damage
@@ -163,10 +164,10 @@ const extraPkmn = ()=>{
             console.log('damage is now 0');
             let damageDisplay = document.querySelector(`#p${n}DamageDisplay`);
             damageDisplay.innerText = 'Damage: 0';
-            field[n-1].damage = 0
-            isKO(field[n-1], n);
+            field[n - 1].damage = 0
+            isKO(field[n - 1], n);
         })
-        
+
     }
 }
 
