@@ -126,9 +126,9 @@ const extraPkmn = () => {
         field.push(testPkmn)
         console.log(field)
 
-        let pokemon1HPDisplay = document.querySelector(`#p${n}TotalHP`);
-        pokemon1HPDisplay.addEventListener('input', function () {
-            hpTotal = pokemon1HPDisplay.value;
+        let pokemonHPDisplay = document.querySelector(`#p${n}TotalHP`);
+        pokemonHPDisplay.addEventListener('input', function () {
+            hpTotal = pokemonHPDisplay.value;
             console.log(field)
             field[n - 1].hp = hpTotal
             console.log(`p${n} hp set to ${hpTotal}`)
