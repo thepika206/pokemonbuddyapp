@@ -9,20 +9,20 @@ function PKMN(id) {
 
 let field = []
 
-function isKO(pkmn, pkmnNbr) {
+function isKO(pkmn) {
     if (pkmn.damage !== 0 && pkmn.hp !== 0 && pkmn.damage >= pkmn.hp) {
         // alert('pokemon KO')
         pkmn.KO = 1;
-        console.log('pokemon 1 is KO');
-        document.querySelector(`#p${pkmnNbr}Card`).style.backgroundColor = 'pink';
-        document.querySelector(`#p${pkmnNbr}CardHeader`).innerText = `Pokemon ${pkmnNbr} is KO`;
+        console.log(`pokemon ${pkmn.id} is KO`);
+        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'pink';
+        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id} is KO`;
 
     }
     else {
         const remainingHP = pkmn.hp - pkmn.damage;
-        console.log(`pokemon ${pkmnNbr} has ${remainingHP} HP left`);
-        document.querySelector(`#p${pkmnNbr}Card`).style.backgroundColor = 'white';
-        document.querySelector(`#p${pkmnNbr}CardHeader`).innerText = `Pokemon ${pkmnNbr}`;
+        console.log(`pokemon ${pkmn.id} has ${remainingHP} HP left`);
+        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'white';
+        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id}`;
     }
 }
 
@@ -41,11 +41,10 @@ function calcDamage(pkmn, changeDmg, dmgSpanID) {
         return newDmg;
     } else {
         let newDmg = pkmn.damage + changeDmg;
-        console.log(`pokemon damage now ${newDmg}`);
-        console.log(dmgSpanID);
+        console.log(`pokemon ${pkmn.id} damage now ${newDmg}`);
         let damageDisplay = document.querySelector(dmgSpanID);
         damageDisplay.innerText = `Damage: ${newDmg}`;
-        pkmn.damage = newDmg
+        pkmn.damage = newDmg;
         return newDmg;
     }
 }
@@ -125,14 +124,12 @@ const extraPkmn = () => {
 
         let testPkmn = new PKMN(n)
         field.push(testPkmn)
-        console.log(field)
 
-        let pokemon1HPDisplay = document.querySelector(`#p${n}TotalHP`);
-        pokemon1HPDisplay.addEventListener('input', function () {
-            hpTotal = pokemon1HPDisplay.value;
-            console.log(field)
+        let pokemonHPDisplay = document.querySelector(`#p${n}TotalHP`);
+        pokemonHPDisplay.addEventListener('input', function () {
+            hpTotal = pokemonHPDisplay.value;
             field[n - 1].hp = hpTotal
-            console.log(`p${n} hp set to ${hpTotal}`)
+            console.log(`pokemon ${n} HP set to ${hpTotal}`)
         })
         //button functions
 
@@ -141,31 +138,31 @@ const extraPkmn = () => {
         let incBtn = document.querySelector(`#p${n}IncDmg`);
         incBtn.addEventListener('click', function () {
             calcDamage(field[n - 1], 10, `#p${n}DamageDisplay`);
-            isKO(field[n - 1], n);
+            isKO(field[n - 1]);
         })
 
         //button adds 50 damage
         let incBtnFifty = document.querySelector(`#p${n}IncDmgFifty`)
         incBtnFifty.addEventListener('click', function () {
             calcDamage(field[n - 1], 50, `#p${n}DamageDisplay`);
-            isKO(field[n - 1], n);
+            isKO(field[n - 1]);
         })
 
         //button removes 10 damage
         let decBtn = document.querySelector(`#p${n}DecDmg`);
         decBtn.addEventListener('click', function () {
             calcDamage(field[n - 1], -10, `#p${n}DamageDisplay`);
-            isKO(field[n - 1], n);
+            isKO(field[n - 1]);
         })
 
         //button clears all damage
         let clrBtn = document.querySelector(`#p${n}ClrDmg`);
         clrBtn.addEventListener('click', function () {
-            console.log('damage is now 0');
+            console.log(`pokemon ${n} damage is now 0`);
             let damageDisplay = document.querySelector(`#p${n}DamageDisplay`);
             damageDisplay.innerText = 'Damage: 0';
             field[n - 1].damage = 0
-            isKO(field[n - 1], n);
+            isKO(field[n - 1]);
         })
 
     }
