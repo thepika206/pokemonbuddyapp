@@ -65,7 +65,7 @@ const extraPkmn = () => {
         card.id = `p${n}Card`;
         let cardDeck = document.getElementById('playerPkmn');
         let heading2 = document.createElement('h2');
-        heading2.class = 'cardHeader';
+        heading2.className = 'cardHeader';
         heading2.id = `p${n}CardHeader`;
         heading2.innerHTML = `Pokemon ${n}`;
         card.appendChild(heading2);
@@ -76,7 +76,8 @@ const extraPkmn = () => {
         nameLabel.htmlFor = `poke${n}Name`
         pName.appendChild(nameLabel);
         let nameInput = document.createElement('input');
-        nameInput.class = 'name';
+        nameInput.setAttribute('class', 'name');
+        nameInput.className = 'name';
         nameInput.id = `poke${n}Name`;
         nameInput.type = 'text'
         pName.appendChild(nameInput);
@@ -88,7 +89,7 @@ const extraPkmn = () => {
         hpLabel.htmlFor = `p${n}HP`;
         hpPara.appendChild(hpLabel);
         let hpSelect = document.createElement('select');
-        hpSelect.class = 'selectHP';
+        hpSelect.className = 'selectHP';
         hpSelect.id = `p${n}TotalHP`;
         hpDefault = document.createElement('option');
         hpDefault.innerHTML = '-Choose the HP';
