@@ -171,4 +171,16 @@ const extraPkmn = () => {
 let addPkmn = document.querySelector('#addPkmn');
 addPkmn.addEventListener('click', extraPkmn)
 
-extraPkmn()      
+extraPkmn()
+
+document.querySelector('#flipCoin').addEventListener('click', flipCoin)
+
+function flipCoin() {
+    let flipInt = Math.floor(Math.random() * 2);
+    console.log(`coin flip ${flipInt}`);
+    if (flipInt === 0) {
+        alert('Coin Flip: Tails')
+    } else {
+        alert('Coin Flip: Heads')
+    }
+}
