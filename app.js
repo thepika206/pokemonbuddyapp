@@ -173,14 +173,25 @@ addPkmn.addEventListener('click', extraPkmn)
 
 extraPkmn()
 
-document.querySelector('#flipCoin').addEventListener('click', flipCoin)
+//coin flip button randomly assigns var flipInt to 0 or 1, representing tails or heads
+const flipCoinBtn = document.querySelector('#flipCoin');
+flipCoinBtn.addEventListener('click', flipCoin);
 
 function flipCoin() {
     let flipInt = Math.floor(Math.random() * 2);
     console.log(`coin flip ${flipInt}`);
-    if (flipInt === 0) {
-        alert('Coin Flip: Tails')
-    } else {
-        alert('Coin Flip: Heads')
-    }
+    flipCoinBtn.disabled = true;
+    flipCoinBtn.value = 'flipping';
+    setTimeout(() => {
+        if (flipInt === 0) {
+            alert('Coin Flip: Tails')
+        } else {
+            alert('Coin Flip: Heads')
+        }
+        flipCoinBtn.disabled = false;
+        flipCoinBtn.value = 'flip coin';
+
+    }, 2000)
+
 }
+
