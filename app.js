@@ -13,6 +13,7 @@ function isKO(pkmn) {
     if (pkmn.damage !== 0 && pkmn.hp !== 0 && pkmn.damage >= pkmn.hp) {
         // alert('pokemon KO')
         pkmn.KO = 1;
+        pkmn.active = 0;
         console.log(`pokemon ${pkmn.id} is KO`);
         document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'pink';
         document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id} is KO`;
@@ -59,7 +60,8 @@ const extraPkmn = () => {
         let buttons = [{ id: `p${n}IncDmgFifty`, class: "button", value: '+ 50' },
         { id: `p${n}IncDmg`, class: 'button primaryDamage', value: '+ 10' },
         { id: `p${n}DecDmg`, class: 'button', value: '- 10' },
-        { id: `p${n}ClrDmg`, class: 'button reset', value: 'clear' }]
+        { id: `p${n}ClrDmg`, class: 'button reset', value: 'clear' },
+        {id: `p${n}Active`, class: 'button', value: 'inactive'}]
         let card = document.createElement('div');
         card.className = 'card';
         card.id = `p${n}Card`;
@@ -160,11 +162,16 @@ const extraPkmn = () => {
         clrBtn.addEventListener('click', function () {
             console.log(`pokemon ${n} damage is now 0`);
             let damageDisplay = document.querySelector(`#p${n}DamageDisplay`);
+            let pkmn = field[n-1]
             damageDisplay.innerText = 'Damage: 0';
-            field[n - 1].damage = 0
-            isKO(field[n - 1]);
+            pkmn.damage = 0;
+            if (pkmn.KO){
+                pkmn.KO = 0
+            }
+            isKO(pkmn);
         })
-
+        let activeBtn = document.querySelector(`#p${n}Active`);
+        activeBtn.addEventListener('click', function() {makeActive(n)})
     }
 }
 
@@ -172,7 +179,6 @@ let addPkmn = document.querySelector('#addPkmn');
 addPkmn.addEventListener('click', extraPkmn)
 
 extraPkmn()
-
 //coin flip button randomly assigns var flipInt to 0 or 1, representing tails or heads
 const flipCoinBtn = document.querySelector('#flipCoin');
 flipCoinBtn.addEventListener('click', flipCoin);
@@ -194,4 +200,23 @@ function flipCoin() {
     }, 2000)
 
 }
+function makeActive(n){
+    for (let i = 1; i<field.length+1; i++){
+        let btn = document.querySelector(`#p${i}Active`);
+        let card = document.querySelector(`#p${i}Card`);
+        let pkmn = field[n-1]
+        if (pkmn.KO){
+            alert("KO'd pokemon cannot be active!");
+            return
+        }
+        else if (i == n){
+            btn.setAttribute('value', 'active');
+            card.classList.add("card-active");
+            pkmn.active = 1
+        } else {btn.setAttribute('value', 'inactive');
+                card.classList.remove('card-active');
+                pkmn.active = 0}
+    }
+}
+makeActive(1)
 
