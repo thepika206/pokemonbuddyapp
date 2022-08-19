@@ -50,11 +50,11 @@ function calcDamage(pkmn, changeDmg, dmgSpanID) {
     }
 }
 
-let pkmnCount = 0;
+let pkmnCount = -1;
 
 const extraPkmn = () => {
 
-    if (pkmnCount < 6) {
+    if (pkmnCount < 5) {
         pkmnCount++;
         const n = pkmnCount
         let buttons = [{ id: `p${n}IncDmgFifty`, class: "button", value: '+ 50' },
@@ -114,7 +114,7 @@ const extraPkmn = () => {
         card.appendChild(dmgPara);
         let dmgButtonPara = document.createElement('p')
         for (let i = 0; i < buttons.length; i++) {
-            tmpButton = document.createElement('input')
+            let tmpButton = document.createElement('input')
             tmpButton.type = 'button'
             tmpButton.setAttribute("class", buttons[i].class)
             tmpButton.id = buttons[i].id
@@ -124,13 +124,12 @@ const extraPkmn = () => {
         card.appendChild(dmgButtonPara)
         cardDeck.appendChild(card);
 
-        let testPkmn = new PKMN(n)
-        field.push(testPkmn)
-
+        //let testPkmn = new PKMN(n)
+        field.push(new PKMN(n))
         let pokemonHPDisplay = document.querySelector(`#p${n}TotalHP`);
         pokemonHPDisplay.addEventListener('input', function () {
             hpTotal = pokemonHPDisplay.value;
-            field[n - 1].hp = hpTotal
+            field[n].hp = hpTotal
             console.log(`pokemon ${n} HP set to ${hpTotal}`)
         })
         //button functions
@@ -139,22 +138,22 @@ const extraPkmn = () => {
         // let damageCurrent = 0
         let incBtn = document.querySelector(`#p${n}IncDmg`);
         incBtn.addEventListener('click', function () {
-            calcDamage(field[n - 1], 10, `#p${n}DamageDisplay`);
-            isKO(field[n - 1]);
+            calcDamage(field[n], 10, `#p${n}DamageDisplay`);
+            isKO(field[n]);
         })
 
         //button adds 50 damage
         let incBtnFifty = document.querySelector(`#p${n}IncDmgFifty`)
         incBtnFifty.addEventListener('click', function () {
-            calcDamage(field[n - 1], 50, `#p${n}DamageDisplay`);
-            isKO(field[n - 1]);
+            calcDamage(field[n], 50, `#p${n}DamageDisplay`);
+            isKO(field[n]);
         })
 
         //button removes 10 damage
         let decBtn = document.querySelector(`#p${n}DecDmg`);
         decBtn.addEventListener('click', function () {
-            calcDamage(field[n - 1], -10, `#p${n}DamageDisplay`);
-            isKO(field[n - 1]);
+            calcDamage(field[n], -10, `#p${n}DamageDisplay`);
+            isKO(field[n]);
         })
 
         //button clears all damage
@@ -162,7 +161,7 @@ const extraPkmn = () => {
         clrBtn.addEventListener('click', function () {
             console.log(`pokemon ${n} damage is now 0`);
             let damageDisplay = document.querySelector(`#p${n}DamageDisplay`);
-            let pkmn = field[n-1]
+            let pkmn = field[n]
             damageDisplay.innerText = 'Damage: 0';
             pkmn.damage = 0;
             if (pkmn.KO){
@@ -201,10 +200,10 @@ function flipCoin() {
 
 }
 function makeActive(n){
-    for (let i = 1; i<field.length+1; i++){
+    for (let i = 0; i<field.length; i++){
         let btn = document.querySelector(`#p${i}Active`);
         let card = document.querySelector(`#p${i}Card`);
-        let pkmn = field[n-1]
+        let pkmn = field[n]
         if (pkmn.KO){
             alert("KO'd pokemon cannot be active!");
             return
@@ -218,5 +217,5 @@ function makeActive(n){
                 pkmn.active = 0}
     }
 }
-makeActive(1)
+makeActive(0)
 
