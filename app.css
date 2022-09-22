@@ -23,7 +23,10 @@ div.card {
     /* border radius adds a rounded corner */
     border-radius: 15px;
 }
-
+div.card-active{
+    border-color: purple;
+    border-width: 5px;
+}
 
 /* general styles for the buttons */
 .button {
@@ -36,6 +39,7 @@ div.card {
     color: black;
     font-weight: 600;
     padding: 5px;
+    margin-bottom:3px
 }
 
 /* specific button style overrides for the primary damage button*/
