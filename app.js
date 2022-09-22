@@ -79,6 +79,7 @@ const extraPkmn = () => {
         pName.appendChild(nameLabel);
         let nameInput = document.createElement('input');
         nameInput.setAttribute('class', 'name');
+        nameInput.setAttribute('autocomplete', 'off');
         nameInput.className = 'name';
         nameInput.id = `poke${n}Name`;
         nameInput.type = 'text'
