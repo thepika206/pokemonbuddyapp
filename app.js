@@ -1,3 +1,22 @@
+//==============Game Const=========================//
+//==============Game Variables=====================//
+let field = []
+let pkmnCount = -1;
+
+
+//==============DOM elements=======================//
+let addPkmn = document.querySelector('#addPkmn');
+
+const flipCoinBtn = document.querySelector('#flipCoin');
+
+//==============Event listeners====================//
+addPkmn.addEventListener('click', extraPkmn)
+flipCoinBtn.addEventListener('click', flipCoin);
+//==============Game Functions=====================//
+extraPkmn()
+makeActive(0)
+
+
 function PKMN(id) {
     this.id = id;
     this.name = "";
@@ -7,52 +26,7 @@ function PKMN(id) {
     this.KO = 0;
 }
 
-let field = []
-
-function isKO(pkmn) {
-    if (pkmn.damage !== 0 && pkmn.hp !== 0 && pkmn.damage >= pkmn.hp) {
-        // alert('pokemon KO')
-        pkmn.KO = 1;
-        pkmn.active = 0;
-        console.log(`pokemon ${pkmn.id} is KO`);
-        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'pink';
-        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id} is KO`;
-
-    }
-    else {
-        const remainingHP = pkmn.hp - pkmn.damage;
-        console.log(`pokemon ${pkmn.id} has ${remainingHP} HP left`);
-        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'white';
-        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id}`;
-    }
-}
-
-
-// This logic is called from the damage buttons: receives the pokemon HP, current damage, change in damage, and the the id for the span of the damage display
-// checks for HP not set, prevent damage from being negative, and of course returning the new damage
-function calcDamage(pkmn, changeDmg, dmgSpanID) {
-    if (pkmn.hp === 0) {
-        console.error('No damage, hp is not set');
-        alert('Set the HP before adding damage');
-        newDmg = 0;
-        return newDmg
-    } else if (pkmn.damage === 0 && changeDmg < 0) {
-        console.error('Damage cannot be negative');
-        newDmg = 0;
-        return newDmg;
-    } else {
-        let newDmg = pkmn.damage + changeDmg;
-        console.log(`pokemon ${pkmn.id} damage now ${newDmg}`);
-        let damageDisplay = document.querySelector(dmgSpanID);
-        damageDisplay.innerText = `Damage: ${newDmg}`;
-        pkmn.damage = newDmg;
-        return newDmg;
-    }
-}
-
-let pkmnCount = -1;
-
-const extraPkmn = () => {
+function extraPkmn (){
 
     if (pkmnCount < 5) {
         pkmnCount++;
@@ -174,13 +148,51 @@ const extraPkmn = () => {
     }
 }
 
-let addPkmn = document.querySelector('#addPkmn');
-addPkmn.addEventListener('click', extraPkmn)
+function isKO(pkmn) {
+    if (pkmn.damage !== 0 && pkmn.hp !== 0 && pkmn.damage >= pkmn.hp) {
+        // alert('pokemon KO')
+        pkmn.KO = 1;
+        pkmn.active = 0;
+        console.log(`pokemon ${pkmn.id} is KO`);
+        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'pink';
+        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id} is KO`;
 
-extraPkmn()
-//coin flip button randomly assigns var flipInt to 0 or 1, representing tails or heads
-const flipCoinBtn = document.querySelector('#flipCoin');
-flipCoinBtn.addEventListener('click', flipCoin);
+    }
+    else {
+        const remainingHP = pkmn.hp - pkmn.damage;
+        console.log(`pokemon ${pkmn.id} has ${remainingHP} HP left`);
+        document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'white';
+        document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id}`;
+    }
+}
+
+
+// This logic is called from the damage buttons: receives the pokemon HP, current damage, change in damage, and the the id for the span of the damage display
+// checks for HP not set, prevent damage from being negative, and of course returning the new damage
+function calcDamage(pkmn, changeDmg, dmgSpanID) {
+    if (pkmn.hp === 0) {
+        console.error('No damage, hp is not set');
+        alert('Set the HP before adding damage');
+        newDmg = 0;
+        return newDmg
+    } else if (pkmn.damage === 0 && changeDmg < 0) {
+        console.error('Damage cannot be negative');
+        newDmg = 0;
+        return newDmg;
+    } else {
+        let newDmg = pkmn.damage + changeDmg;
+        console.log(`pokemon ${pkmn.id} damage now ${newDmg}`);
+        let damageDisplay = document.querySelector(dmgSpanID);
+        damageDisplay.innerText = `Damage: ${newDmg}`;
+        pkmn.damage = newDmg;
+        return newDmg;
+    }
+}
+
+
+
+
+
 
 function flipCoin() {
     let flipInt = Math.floor(Math.random() * 2);
@@ -217,5 +229,5 @@ function makeActive(n){
                 pkmn.active = 0}
     }
 }
-makeActive(0)
+
 
