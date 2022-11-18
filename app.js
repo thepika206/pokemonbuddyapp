@@ -19,6 +19,7 @@ makeActive(0)
 setMessage('Enter information for your Pokemon "In Play", then use the buttons to add damage counters')
 
 function setMessage(str){
+    message.innerText = ''
     message.innerText = str
 }
 
@@ -187,7 +188,7 @@ function calcDamage(pkmn, changeDmg, dmgSpanID) {
         return newDmg;
     } else {
         let newDmg = pkmn.damage + changeDmg;
-        setMessage(changeDmg > 0 ? `${changeDmg} damage added`: `${changeDmg} damage removed`);
+        setMessage(changeDmg > 0 ? `${changeDmg} damage added, total damage: ${newDmg}`: `${changeDmg} damage removed, total damage: ${newDmg}`);
         let damageDisplay = document.querySelector(dmgSpanID);
         damageDisplay.innerText = `Damage: ${newDmg}`;
         pkmn.damage = newDmg;

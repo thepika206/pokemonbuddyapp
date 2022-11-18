@@ -96,7 +96,8 @@ select.selectHP {
 }
 
 header {
-    background-color: white;
+    background-color: #444;
+    color: white;
     min-height: 40px;
     display: flex;
     justify-content: center;
