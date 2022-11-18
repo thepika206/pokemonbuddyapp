@@ -16,6 +16,7 @@ flipCoinBtn.addEventListener('click', flipCoin);
 //==============Game Functions=====================//
 extraPkmn()
 makeActive(0)
+setMessage('Enter information for your Pokemon "In Play", then use the buttons to add damage counters')
 
 function setMessage(str){
     message.innerText = str
