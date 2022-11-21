@@ -1,7 +1,8 @@
 body {
     background-color: royalblue;
     margin: auto;
-    padding-bottom: 20px
+    padding: 10px;
+    /* padding-bottom: 20px */
 }
 
 h1 {
@@ -32,7 +33,7 @@ div.card-active{
 .button {
     margin-right: 10px;
     width: 20%;
-    max-width: 70px;
+    max-width: 120px;
     border-radius: 10px;
     /* border: none; */
     background-color: whitesmoke;
@@ -92,6 +93,20 @@ select.selectHP {
     margin-left: 10px;
     padding-left: 5px;
     font-weight: 600;
+}
+
+header {
+    background-color: #444;
+    color: white;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#message {
+    text-align: center;
 }
 
 @media (min-width: 800px) {

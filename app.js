@@ -8,6 +8,7 @@ let pkmnCount = -1;
 let addPkmn = document.querySelector('#addPkmn');
 
 const flipCoinBtn = document.querySelector('#flipCoin');
+const message = document.querySelector('#message');
 
 //==============Event listeners====================//
 addPkmn.addEventListener('click', extraPkmn)
@@ -15,7 +16,12 @@ flipCoinBtn.addEventListener('click', flipCoin);
 //==============Game Functions=====================//
 extraPkmn()
 makeActive(0)
+setMessage('Enter information for your Pokemon "In Play", then use the buttons to add damage counters')
 
+function setMessage(str){
+    message.innerText = ''
+    message.innerText = str
+}
 
 function PKMN(id) {
     this.id = id;
@@ -173,7 +179,7 @@ function isKO(pkmn) {
 function calcDamage(pkmn, changeDmg, dmgSpanID) {
     if (pkmn.hp === 0) {
         console.error('No damage, hp is not set');
-        alert('Set the HP before adding damage');
+        setMessage('Error: Set the HP before adding damage');
         newDmg = 0;
         return newDmg
     } else if (pkmn.damage === 0 && changeDmg < 0) {
@@ -182,7 +188,7 @@ function calcDamage(pkmn, changeDmg, dmgSpanID) {
         return newDmg;
     } else {
         let newDmg = pkmn.damage + changeDmg;
-        console.log(`pokemon ${pkmn.id} damage now ${newDmg}`);
+        setMessage(changeDmg > 0 ? `${changeDmg} damage added, total damage: ${newDmg}`: `${changeDmg} damage removed, total damage: ${newDmg}`);
         let damageDisplay = document.querySelector(dmgSpanID);
         damageDisplay.innerText = `Damage: ${newDmg}`;
         pkmn.damage = newDmg;
@@ -200,11 +206,14 @@ function flipCoin() {
     console.log(`coin flip ${flipInt}`);
     flipCoinBtn.disabled = true;
     flipCoinBtn.value = 'flipping';
+    setMessage('Please wait for Coin Flip...')
     setTimeout(() => {
         if (flipInt === 0) {
-            alert('Coin Flip: Tails')
+            // alert('Coin Flip: Tails')
+            setMessage('Coin Flip: Tails')
         } else {
-            alert('Coin Flip: Heads')
+            // alert('Coin Flip: Heads')
+            setMessage('Coin Flip: Heads')
         }
         flipCoinBtn.disabled = false;
         flipCoinBtn.value = 'flip coin';
@@ -218,13 +227,14 @@ function makeActive(n){
         let card = document.querySelector(`#p${i}Card`);
         let pkmn = field[n]
         if (pkmn.KO){
-            alert("KO'd pokemon cannot be active!");
+            setMessage("KO'd pokemon cannot be active!");
             return
         }
         else if (i == n){
             btn.setAttribute('value', 'active');
             card.classList.add("card-active");
             pkmn.active = 1
+            setMessage(`Pokemon ${n} is active`)
         } else {btn.setAttribute('value', 'inactive');
                 card.classList.remove('card-active');
                 pkmn.active = 0}
