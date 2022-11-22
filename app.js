@@ -170,6 +170,7 @@ function isKO(pkmn) {
         console.log(`pokemon ${pkmn.id} has ${remainingHP} HP left`);
         document.querySelector(`#p${pkmn.id}Card`).style.backgroundColor = 'white';
         document.querySelector(`#p${pkmn.id}CardHeader`).innerText = `Pokemon ${pkmn.id}`;
+        pkmn.KO = 0;
     }
 }
 
